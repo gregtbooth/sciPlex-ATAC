@@ -1,6 +1,6 @@
 #set working environment in R
 
-basepath = "github/"
+basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/190521_scichem2_AllPlates/"
 out_dir = paste0(basepath, "analysis/archr/sc2_integratedRNA_v2/")
 dir.create(paste0(out_dir,"Plots/NB6/"))
 setwd(out_dir)

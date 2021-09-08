@@ -1,3 +1,5 @@
+## on cluster, initiate qlogin session with 1 core. 
+# qlogin -q trapnell-login.q -l mfree=50G -pe serial 1
 # 
 #load the following modules 
 #module load MACS/2.2.7.1 
@@ -5,7 +7,7 @@
 # start R (4.0.0)
 
 #set working environment in R
-basepath = "github/"
+basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/190521_scichem2_AllPlates/"
 out_dir =paste0(basepath, "analysis/archr_revised/")
 dir.create(paste0(out_dir, "results/NB4"))
 setwd(paste0(out_dir, "results/NB4"))
@@ -64,10 +66,12 @@ prj <- addPeakMatrix(prj,
                      force = TRUE)
 
 # add peak motif information
-projHeme5 <- addMotifAnnotations(ArchRProj = prj, 
-                                 motifSet = "cisbp", 
-                                 name = "Motif")
+prj <- addMotifAnnotations(ArchRProj = prj, 
+                           motifSet = "cisbp", 
+                           name = "Motif")
 
+# add peak ENCODE TFBS data
+prj <- addArchRAnnotations(ArchRProj = prj, collection = "EncodeTFBS")
 
 # save output
 saveArchRProject(ArchRProj = prj, 

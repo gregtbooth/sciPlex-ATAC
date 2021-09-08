@@ -1,4 +1,4 @@
-basepath = "github/"
+basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/190521_scichem2_AllPlates/"
 bin_directory = paste0(basepath, "analysis/bin/")
 out_dir =paste0(basepath, "analysis/archr_revised/")
 dir.create(paste0(out_dir, "results/NB14"))
@@ -334,6 +334,9 @@ plot_dose_response_curves = function(sci_chem_counts, sci_chem_models, color_by=
 ## Greg usage below
 ## Create cds from ArchR project
 
+prj = loadArchRProject(path = paste0(out_dir, "sc2_filtered"), 
+                       showLogo = FALSE) 
+
 pMat = getMatrixFromArrow(ArrowFile = paste0(out_dir,"sc2_filtered/ArrowFiles/sc2.arrow"),
                           ArchRProj = prj, 
                           cellNames = prj$cellNames,
@@ -357,7 +360,7 @@ pd = data.frame(getPeakSet(prj)) %>%
                 gene_short_name, GC, idx, peak)
 
 a_rd = left_join(rd, pd, by = "peak") %>% 
-  select(rowname = rowname.x, idx = idx.x, score, replicateScoreQuantile, groupScoreQuantile, 
+  dplyr::select(rowname = rowname.x, idx = idx.x, score, replicateScoreQuantile, groupScoreQuantile, 
          Reproducibility, GroupReplicate, distToGeneStart,
          nearestGene, peakType, distToTSS, nearestTSS,
          gene_short_name, GC, peak)

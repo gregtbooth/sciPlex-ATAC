@@ -2,7 +2,7 @@
 #  qlogin -q trapnell-login.q -l mfree=4G -pe serial 16
 # start R (4.0)
 
-basepath = "github/"
+basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/190521_scichem2_AllPlates/"
 out_dir = paste0(basepath, "analysis/archr_test/")
 dir.create(out_dir)
 setwd(out_dir)

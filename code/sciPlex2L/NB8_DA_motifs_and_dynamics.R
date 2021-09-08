@@ -1,4 +1,4 @@
-basepath = "github/"
+basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/190521_scichem2_AllPlates/"
 bin_directory = paste0(basepath, "analysis/bin/")
 out_dir =paste0(basepath, "analysis/archr_revised/")
 dir.create(paste0(out_dir, "results/NB8"))
@@ -359,7 +359,8 @@ plot_top_motifs = function(peak.DA.stats, Feat_type = "distal", d = "SAHA"){
 ################################################################################
 # run the functions above for each drug. 
 
-for(D in c("SAHA", "Dex", "BMS345541", "Nutlin3A")){
+#for(D in c("SAHA", "Dex", "BMS345541", "Nutlin3A")){
+for(D in c("Nutlin3A")){
   DA.stats = plot_pd_heatmap(d = D)
   write.table(DA.stats, file = paste0(D, "/", D, "_", "peak_acc_coefs_PDdirections.txt"), 
               quote = FALSE, col.names = TRUE, row.names = FALSE, sep = "\t")

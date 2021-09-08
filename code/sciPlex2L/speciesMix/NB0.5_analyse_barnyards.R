@@ -12,7 +12,7 @@ suppressPackageStartupMessages({
 source("~/scripts/GB_src/io_functions.R")
 source("~/scripts/GB_src/ConvertBCs_ToWells_V3.R")
 
-basepath = "github/"
+basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/190521_scichem2_AllPlates/"
 matpath = paste0(basepath, "pipeline_hill/analysis_barnyard/make_matrices/")
 out_dir =paste0(basepath, "analysis/archr_revised/")
 dir.create(paste0(out_dir, "results/barnyard"))

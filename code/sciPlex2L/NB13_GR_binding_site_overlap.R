@@ -1,9 +1,9 @@
 # This bit of code compares our sciplex-ATAC peaks with GR binding sites. 
 # GR binding sites we're defined by Vockley et. al. 2016 using ChIP seq. 
 
-basepath = "github/"
+basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/190521_scichem2_AllPlates/"
 bin_directory = paste0(basepath, "analysis/bin/")
-ref_path = "genomes/HG19/annotations/downloaded_data/"
+ref_path = "/net/trapnell/vol1/home/gtb7/genomes/HG19/annotations/downloaded_data/"
 out_dir =paste0(basepath, "analysis/archr_revised/")
 dir.create(paste0(out_dir, "results/NB13"))
 setwd(paste0(out_dir, "results/NB13"))

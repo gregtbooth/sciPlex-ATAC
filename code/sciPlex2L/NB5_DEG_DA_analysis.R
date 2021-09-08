@@ -1,4 +1,4 @@
-basepath = "github/"
+basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/190521_scichem2_AllPlates/"
 bin_directory = paste0(basepath, "analysis/bin/")
 out_dir =paste0(basepath, "analysis/archr_revised/")
 dir.create(paste0(out_dir, "results/NB5"))
@@ -21,6 +21,7 @@ suppressPackageStartupMessages({
   library(dplyr)
   library(ggrastr)
   library(ggpubr)
+  library(gt)
   plan(multicore)
 })
 
@@ -392,6 +393,29 @@ upset(
 )
 dev.off()
 
+
+# prepare table describing peak types, and direction of changes for each drug
+sig_peaks_table = smtr %>% 
+  filter(grepl("dose_", term)) %>%
+  filter(q_value < 0.05) %>%
+  dplyr::select(peak, peakType, term, estimate, q_value) %>% 
+  mutate(direction = ifelse(estimate < 0, "closing", "opening"),
+         PT = ifelse(peakType == "Promoter", "Promoter", "Distal"), 
+         PT_direction = paste0(PT, "_", direction), 
+         Compound = stringr::str_split_fixed(term, "_", 2)[,2]) %>% 
+  group_by(PT_direction, Compound) %>% 
+  summarise(nPeaks = n()) %>% 
+  spread(PT_direction, nPeaks, fill = 0)
+
+write.table(sig_peaks_table, 
+            file =  "sigPeaks_table.txt", 
+            row.names=F, 
+            quote=F, 
+            sep="\t")
+
+gtable_reps = sig_peaks_table %>% gt()
+  #fmt_number(columns = vars(med_TSSenr, med_FRIP, med_hashEnr), decimals = 2) 
+gtsave(gtable_reps, filename = "DApeakTable.pdf")
 
 
 #######################################################

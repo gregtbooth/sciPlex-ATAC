@@ -10,8 +10,8 @@
 # ArchR project which will be used for downstream analysis. 
 
 # load scripts containing custom ATAC scrublet code
-source("github/src/atac_helper_functions.R")
-basepath = "github/"
+source("/net/trapnell/vol1/home/gtb7/sciatac_pipeline/src/sylvia_scripts/scripts/atac_helper_functions.R")
+basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/190521_scichem2_AllPlates/"
 out_dir = paste0(basepath, "analysis/archr_revised/")
 setwd(out_dir)
 dir.create("results")
@@ -455,7 +455,21 @@ ggplot(cd) +
 ggsave(filename = paste0(out_dir,"results/NB2/HashEnrichmentbyDose_drugFacet.png", sep = ""),
        width = 4, height = 3)
 
+#run regression to test significance of log(dose) on various metrics. 
+dose_TSSenr_relations = function(df, treat ){
+  df_filt = filter(df, treatment == treat) %>% 
+    mutate(log_dose = log(dose + 0.01)) #add pseudodose and log
+  
+  doseCoef = summary(glm("TSSEnrichment~log_dose + nFrags",family = "gaussian", data = df_filt))$coefficients["log_dose", "Estimate"]
+  pVal = summary(glm("TSSEnrichment~log_dose + nFrags",family = "gaussian", data = df_filt))$coefficients["log_dose", "Pr(>|t|)"]
+  res = data.frame(treatment = treat, dose_coef = doseCoef, p_val = pVal)
+  return(res)
+}
 
+coef_table = data.frame(treatment = character(), dose_coef = numeric(), p_val = numeric())
+for(d in c("SAHA", "Dex", "BMS", "Nutlin")){
+    coefs = dose_TSSenr_relations(df = cd, treat = d)
+    coef_table = rbind(coef_table, coefs)}
 
 
 ####################################################

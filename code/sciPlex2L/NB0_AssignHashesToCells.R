@@ -12,7 +12,7 @@ suppressPackageStartupMessages({
 source("~/scripts/GB_src/ConvertBCs_ToWells_V3.R")
 source("~/scripts/GB_src/chiSq_2lvl_GB.R")
 
-basepath = "github/"
+basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/190521_scichem2_AllPlates/"
 out_dir = paste0(basepath,"analysis/archr_revised/hash/")
 
 samples = c(SC2 = paste0(basepath, "pipeline_hill/analysis_SC2/count_report/SC2.count_report.txt"),

@@ -20,7 +20,7 @@
 # 7) ultimately, we hope these models reveal sequence elements within promoters and connected
 # distal sites which predict how genes will react to drugs. 
 
-basepath = "github/"
+basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/190521_scichem2_AllPlates/"
 out_dir =paste0(basepath, "analysis/archr_revised/")
 dir.create(paste0(out_dir, "results/NB10"))
 setwd(paste0(out_dir, "results/NB10/"))
@@ -490,6 +490,7 @@ dex.model.coefs = extract_top_motif_coefs(models = dex.models)
 # BMS
 bms.tss.motifs = get_TSS_info(d = "BMS", cicero_threshold = 0.1)
 save(bms.tss.motifs, file = "BMS/BMS_tss.motifs")
+#bms.tss.motifs = read.csv("BMS/BMS_tss.motifs")
 bms.models = run_motif_glm_model(d = "BMS", 
                                  motif_df = motif.df,
                                  tss.motifs = bms.tss.motifs, 

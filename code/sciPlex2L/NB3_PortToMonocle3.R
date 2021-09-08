@@ -3,7 +3,7 @@
 # dimensionality reduction and UMAP embedding. 
 # set working environment in R
 
-basepath = "github/"
+basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/190521_scichem2_AllPlates/"
 out_dir =paste0(basepath, "analysis/archr_revised/")
 dir.create(paste0(out_dir, "results/NB3"))
 setwd(paste0(out_dir, "results/NB3"))
@@ -58,6 +58,10 @@ cds_b = monocle3::new_cell_data_set(assays(bMat)$TileMatrix,
 # filter out unused cells 
 cds_b = cds_b[,!is.na(colData(cds_b)$treatment)]
 
+cd = data.frame(colData(cds_b)) %>% 
+  mutate(treatment_f = ifelse(vehicle, "Vehicle", treatment))
+colData(cds_b)$treatment_f = cd$treatment_f
+
 # preprocess bin cds
 # reduce dimensions
 set.seed(2017)
@@ -96,17 +100,17 @@ ggplot(TCdat_pr, aes(x = UMAP_1, y = UMAP_2, color = cluster)) +
 dev.off()
 
 #pdf by drug
-pdf("Monocle3_UMAP_bins_drug.pdf", width = 2, height = 1.25)
-ggplot(TCdat_pr, aes(x = UMAP_1, y = UMAP_2, color = treatment)) +
+pdf("Monocle3_UMAP_bins_drug2.pdf", width = 2, height = 1.25)
+ggplot(TCdat_pr, aes(x = UMAP_1, y = UMAP_2, color = treatment_f)) +
   #geom_point(size = 0.2, stroke = 0) +
   geom_point_rast(size=0.4, stroke = 0) + #rasterizes scatter plot while keeping axes etc. vectorized
   theme(legend.position = "right", text = element_text(size = 6),  
         legend.key.width = unit(0.2,"line"), legend.key.height = unit(0.25,"line")) + 
   scale_color_manual("Treatment",
                      labels = c("BMS" = "BMS345541", "Dex" = "Dex",
-                                "Nutlin" = "Nutlin3A", "SAHA" = "SAHA"),
-                     values = c("BMS" = "dimgrey", "Dex" = "deepskyblue3",
-                                "Nutlin" = "firebrick3", "SAHA" = "springgreen4")) +
+                                "Nutlin" = "Nutlin3A", "SAHA" = "SAHA", "Vehicle" = "Vehicle"),
+                     values = c("BMS" = "darkmagenta", "Dex" = "deepskyblue3",
+                                "Nutlin" = "firebrick3", "SAHA" = "springgreen4", "Vehicle" = "dimgrey")) +
   xlab("Component 1") +
   ylab("Component 2") +
   guides(guides(colour = guide_legend(override.aes = list(size=1.5)))) +
@@ -133,8 +137,8 @@ dev.off()
 
 
 # faceted pdf by replicate and colored by drug
-pdf("Monocle3_UMAP_bins_byDrug_facetReplicates.pdf", width = 2, height = 1.75)
-ggplot(TCdat_pr, aes(x = UMAP_1, y = UMAP_2, color = treatment)) +
+pdf("Monocle3_UMAP_bins_byDrug_facetReplicates2.pdf", width = 2, height = 1.75)
+ggplot(TCdat_pr, aes(x = UMAP_1, y = UMAP_2, color = treatment_f)) +
   #geom_point(data = TCdat_pr, color = "gray", size = 0.05, stroke = 0) +
   geom_point_rast(data = TCdat_pr, size = 0.75, stroke = 0) + #rasterizes scatter plot while keeping axes etc. vectorized
   facet_wrap(~replicate, ncol = 2) +
@@ -142,9 +146,9 @@ ggplot(TCdat_pr, aes(x = UMAP_1, y = UMAP_2, color = treatment)) +
         legend.key.width = unit(0.2,"line"), legend.key.height = unit(0.25,"line")) + 
   scale_color_manual("Treatment",
                      labels = c("BMS" = "BMS345541", "Dex" = "Dex",
-                                "Nutlin" = "Nutlin3A", "SAHA" = "SAHA"),
-                     values = c("BMS" = "dimgrey", "Dex" = "deepskyblue3",
-                                "Nutlin" = "firebrick3", "SAHA" = "springgreen4")) +
+                                "Nutlin" = "Nutlin3A", "SAHA" = "SAHA", "Vehicle" = "Vehicle"),
+                     values = c("BMS" = "darkmagenta", "Dex" = "deepskyblue3",
+                                "Nutlin" = "firebrick3", "SAHA" = "springgreen4", "Vehicle" = "dimgrey")) +
   xlab("Component 1") +
   ylab("Component 2") +
   guides(guides(colour = guide_legend(override.aes = list(size=1.5)))) +

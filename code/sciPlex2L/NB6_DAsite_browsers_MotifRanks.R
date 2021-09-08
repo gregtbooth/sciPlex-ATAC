@@ -1,4 +1,4 @@
-basepath = "github/"
+basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/190521_scichem2_AllPlates/"
 bin_directory = paste0(basepath, "analysis/bin/")
 out_dir =paste0(basepath, "analysis/archr_revised/")
 dir.create(paste0(out_dir, "results/NB6"))
@@ -276,7 +276,7 @@ colData(cds.rna)$Cluster = clusters(cds.rna, reduction_method="PCA")
 
 # manually selected list of TFs targetting top sig motifs for each drug
 # SAHA
-TFgenes_SAHA_up = c("LHX8", "CEBPZ", "NFYA", "NFYB", "NFYC")
+TFgenes_SAHA_up = c("LHX8", "CEBPZ", "NFYA", "NFYB", "NFYC", "PBX3")
 TFgenes_SAHA_down = c("FOXA1", "FOXA2", "HNF1B", "FOXA3", "FOXO3")
 
 #Dex
@@ -293,17 +293,17 @@ TFgenes_BMS_down = c("CEBPB", "CEBPE", "NKX25", "TEAD3", "AR")
 
 
 
-d = "Nutlin"
+d = "SAHA"
 dose_term = paste0("dose_", d)
 
 # Opening Motif TF expression
 TF_genes_opening <-
-  cds.rna[rowData(cds.rna)$gene_short_name %in% TFgenes_Nutlin_up,
+  cds.rna[rowData(cds.rna)$gene_short_name %in% TFgenes_SAHA_up,
           colData(cds.rna)$treatment == d |
             colData(cds.rna)$vehicle == TRUE]
 
 TF_genes_closing <-
-  cds.rna[rowData(cds.rna)$gene_short_name %in% TFgenes_Dex_down,
+  cds.rna[rowData(cds.rna)$gene_short_name %in% TFgenes_SAHA_down,
           colData(cds.rna)$treatment == d |
             colData(cds.rna)$vehicle == TRUE]
 
