@@ -1,4 +1,4 @@
-basepath = "github/"
+basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/191218_3Level_scichem_MLR_combinedRuns/"
 out_dir = paste0(basepath, "analysis/archr/")
 dir.create(paste0(out_dir, "results/NB4"))
 setwd(paste0(out_dir, "results/NB4"))
@@ -87,6 +87,10 @@ markerGenes  <- c(
   "FCER1A", "CST3", #FCER1A + monocytes
   "PPBP", #platelet (A-nuclear, will not show up in ATAC)
   "CCNB1", "CCNB2","CDK1" #proliferation markers
+)
+
+markerGenes_2  <- c(
+  "CCL5", "IFIT2", "IFIH1", "OASL" #Recently Activated T (from NEAT-seq paper)
 )
 
 p <- plotEmbedding(

@@ -7,7 +7,7 @@ library(ggplot2)
 library(ggrastr)
 source("~/scripts/GB_src/io_functions.R")
 source("~/scripts/GB_src/ParseBCtoWells.R")
-basepath = "github/"
+basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/191117_3Level_barnyard5/"
 matpath = paste0(basepath, "pipeline_hill/analysis_barnyard/make_matrices/")
 out_dir = paste0(basepath,"analysis/results/NB2/")
 dir.create(out_dir)

@@ -10,8 +10,8 @@
 # ArchR project which will be used for downstream analysis. 
 
 #set working environment in R
-source("/src/atac_helper_functions.R")
-basepath = "github/"
+source("/net/trapnell/vol1/home/gtb7/sciatac_pipeline/src/sylvia_scripts/scripts/atac_helper_functions.R")
+basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/191218_3Level_scichem_MLR_combinedRuns/"
 out_dir = paste0(basepath, "analysis/archr/")
 setwd(out_dir)
 dir.create("results")

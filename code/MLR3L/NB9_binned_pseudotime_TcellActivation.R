@@ -1,7 +1,7 @@
 ## NOTE: This Script is pretty memory-intensive (saves/reads full models for each peak)
 ## run on cluster
 
-basepath = "github/"
+basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/191218_3Level_scichem_MLR_combinedRuns/"
 out_dir = paste0(basepath, "analysis/archr/")
 dir.create(paste0(out_dir, "results/NB9"))
 setwd(paste0(out_dir, "results/NB9"))

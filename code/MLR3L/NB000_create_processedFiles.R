@@ -1,4 +1,4 @@
-basepath = "github/"
+basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/191218_3Level_scichem_MLR_combinedRuns/"
 out_dir =paste0(basepath, "analysis/archr/")
 dir.create(paste0(out_dir, "results/NB000"))
 setwd(paste0(out_dir, "results/NB000/"))
@@ -157,7 +157,7 @@ peak_motif_matrix_cols = colnames(motif_mat)
 writeMM(peak_motif_matrix_sp,file= paste0(prefix,'_peak_motif_matrix.mtx.txt'))
 write.table(peak_motif_matrix_cols, file= paste0(prefix,'_peak_motif_matrix.cols.txt'), sep = "\t", 
             col.names = FALSE, row.names = FALSE, quote = FALSE)
-write.table(peak_motif_matrix_rows, file= paste0(prefix,'peak_motif_matrix.rows.txt'), sep = "\t", 
+write.table(peak_motif_matrix_rows, file= paste0(prefix,'_peak_motif_matrix.rows.txt'), sep = "\t", 
             col.names = FALSE, row.names = FALSE, quote = FALSE)
 
 
@@ -187,6 +187,7 @@ set.seed(2017)
 cds_pl <- detect_genes(new_cds)
 cds_pl <- estimate_size_factors(cds_pl)
 cds_pl = preprocess_cds(cds_pl, method = "LSI", num_dimensions=50)
+reducedDim(cds_pl) <- reducedDim(cds_pl)[,2:50]
 cds_pl = reduce_dimension(cds_pl, reduction_method = 'UMAP', preprocess_method = "LSI")
 cds_pl = cluster_cells(cds_pl, reduction_method = 'UMAP')
 
@@ -195,26 +196,19 @@ colData(cds_pl)$UMAP_1 <- reducedDims(cds_pl)$UMAP[,1]
 colData(cds_pl)$UMAP_2 <- reducedDims(cds_pl)$UMAP[,2]
 colData(cds_pl)$cluster <- cds_pl@clusters$UMAP$clusters
 TCdat_pr = data.frame(colData(cds_pl))
-TCdat_pr$dose_character <- as.character(TCdat_pr$Relative_dose)
-TCdat_pr$dose_character <- factor(TCdat_pr$dose_character,
-                                  levels = c("0", "0.1", "0.5", "1", "5","10", "50", "100")) 
 
-#pdf by drug
-pdf("UMAP_peak_drug.pdf", width = 2, height = 1.25)
-ggplot(TCdat_pr, aes(x = UMAP_1, y = UMAP_2, color = treatment)) +
-  #geom_point(size = 0.2, stroke = 0) +
+#plot UMAP by cluster
+pdf("Monocle3_peak_UMAP_clusters.pdf", width = 2, height = 1.75)
+ggplot(TCdat_pr, aes(x = UMAP_1, y = UMAP_2, color = cluster)) +
   geom_point_rast(size=0.4, stroke = 0) + #rasterizes scatter plot while keeping axes etc. vectorized
   theme(legend.position = "right", text = element_text(size = 6),  
         legend.key.width = unit(0.2,"line"), legend.key.height = unit(0.25,"line")) + 
-  scale_color_manual("Treatment",
-                     labels = c("BMS" = "BMS345541", "Dex" = "Dex",
-                                "Nutlin" = "Nutlin3A", "SAHA" = "SAHA"),
-                     values = c("BMS" = "dimgrey", "Dex" = "deepskyblue3",
-                                "Nutlin" = "firebrick3", "SAHA" = "springgreen4")) +
   xlab("Component 1") +
   ylab("Component 2") +
   guides(guides(colour = guide_legend(override.aes = list(size=1.5)))) +
-  monocle3:::monocle_theme_opts()
+  monocle3:::monocle_theme_opts() +
+  theme(axis.text = element_blank(), axis.line = element_blank(), axis.line.x = element_blank(), 
+        axis.line.y = element_blank(), axis.ticks = element_blank(), axis.title = element_blank())
 dev.off()
 
 

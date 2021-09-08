@@ -8,8 +8,8 @@ suppressPackageStartupMessages({
   library(UpSetR)
   })
 
-binpath ="src/"
-basepath = "github/"
+binpath ="/net/trapnell/vol1/home/gtb7/scripts/GB_src/"
+basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/191218_3Level_scichem_MLR_combinedRuns/"
 source(paste0(binpath,"chiSq_2lvl_GB.R"))
 out_dir = paste0(basepath,"analysis/archr/hash/")
 

@@ -5,11 +5,10 @@ library(dplyr)
 library(stringr)
 library(ggplot2)
 library(ggrastr)
-
 source("~/scripts/GB_src/io_functions.R")
 source("~/scripts/GB_src/chiSq_2lvl_GB.R")
 source("~/scripts/GB_src/ConvertBCs_ToWells_V3.R")
-basepath = "github/"
+basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/190421_barnyard7/"
 matpath = paste0(basepath, "pipeline_hill/analysis_barnyard/make_matrices/")
 out_dir = paste0(basepath,"analysis/results/NB1/")
 dir.create(out_dir)
@@ -197,5 +196,30 @@ hashOut <- select(hash_df_all, cell, wellID = Cell, hash_umis, well_oligo = top_
 write.table(hashOut, file= paste0(out_dir, "hashCellAssignments.txt"),
             quote = FALSE, sep = "\t", col.names = TRUE, row.names = FALSE)
 
+
+# create raw count matrix (sparse) files
+bin_by_cell_matrix_sp = Matrix(sample_window_matrix, sparse = TRUE)
+bin_by_cell_matrix_rows = row.names(sample_window_matrix)
+bin_by_cell_matrix_cols = colnames(sample_window_matrix)
+
+writeMM(bin_by_cell_matrix_sp,file='BY2_bin_matrix.mtx.txt')
+write.table(bin_by_cell_matrix_rows, file='BY2_bin_matrix.rows.txt', sep = "\t", 
+            col.names = FALSE, row.names = FALSE, quote = FALSE)
+write.table(bin_by_cell_matrix_cols, file='BY2_bin_matrix.cols.txt', sep = "\t", 
+            col.names = FALSE, row.names = FALSE, quote = FALSE)
+
+
+system('gzip BY2_bin_matrix.mtx.txt')
+system('gzip BY2_bin_matrix.rows.txt')
+system('gzip BY2_bin_matrix.cols.txt')
+
+
+# Test loading matrix
+#pm = readMM("BY2_bin_matrix.mtx.txt.gz")
+#rn = read.table("BY2_bin_matrix.rows.txt.gz", header = FALSE, comment.char = "")
+#cn = read.table("BY2_bin_matrix.cols.txt.gz", header = FALSE, comment.char = "")
+#rownames(pm) <- rn$V1
+#colnames(pm) <- cn$V1
+#pm[1:10,1:10]
 
 

@@ -2,7 +2,7 @@
 #  qlogin -q trapnell-login.q -l mfree=4G -pe serial 16
 # start R (3.5.2)
 
-basepath = "github/"
+basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/191218_3Level_scichem_MLR_combinedRuns/"
 out_dir = paste0(basepath, "analysis/archr/")
 setwd(out_dir)
 
