@@ -7,7 +7,7 @@ Gregory T. Booth
 
 This repository contains scripts used to perform analyses and generate figures in the manuscript, "High Capacity Sample Multiplexing for Single Cell Chromatin Accessibility Profiling" by Booth et. al. 2021. 
 
-Raw and Processed data files used in the manuscript can be accessed through GEO (GSE178953). The aligned fragments files contained in GEO for each experiment can easily be used to create ArchR project objects, which are relied on by most scripts in this repository.  
+Raw and Processed data files used in the manuscript can be accessed through GEO (GSE178953). The aligned fragments files contained in GEO for each experiment can easily be used to create ArchR project objects, which are relied on by most scripts in this repository. The manual for ArchR can be found [here](https://www.archrproject.com/).
 
 
 ## Pre-processing raw sciATAC-seq data 
@@ -27,10 +27,10 @@ For three-level sciPlex-ATAC-seq data, such as that of the mixed lymphocyte reac
 
 sciPlex-ATAC-seq libraries contain hash reads which identify sample origins. We have included scripts for extracting these hash reads from fastq files and organizing them with respect to cell barcodes in the "Preprocess" directory. Because of the differences in library construction, hash reads from two- and three-level sciPlex-ATAC-seq experiments require different handling.
 
-####### two-level hash reads
+### Two-level hash reads
 In two-level experiments, hash reads are sequenced separately from ATAC reads. Fastq files are first created containing the all cell barcodes in the header, then these hash reads are organized and summarized into a table with hash ID counts per cell barcode. 
 
-####### three-level hash reads
+### Three-level hash reads
 For three-level experiments, hash reads are sequenced along with ATAC fragments. Therefore, hash reads are simply extracted from fastq files, by looking for reads which match expected hash ID sequences. These hash reads are organized and summarized into a table with hash ID counts per cell barcode. 
 
 
