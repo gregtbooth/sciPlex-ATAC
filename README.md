@@ -7,7 +7,7 @@ Gregory T. Booth
 
 This repository contains scripts used to perform analyses and generate figures in the manuscript, "High Capacity Sample Multiplexing for Single Cell Chromatin Accessibility Profiling" by Booth et. al. 2021. 
 
-Raw and Processed data files used in the manuscript can be accessed through GEO (GSE178953). The aligned fragments files contained in GEO for each experiment can easily be used to create ArchR project objects, which are relied on by most scripts in this repository. The manual for ArchR can be found [here](https://www.archrproject.com/).
+Raw and processed data files used in the manuscript can be accessed through GEO (GSE178953). The aligned fragments files contained in GEO for each experiment can easily be used to create ArchR project objects, which are relied on by most scripts in this repository. The manual for ArchR can be found [here](https://www.archrproject.com/).
 
 
 ## Pre-processing raw sciATAC-seq data 
