@@ -14,11 +14,11 @@ Raw and Processed data files used in the manuscript can be accessed through GEO 
 
 Because we have made use of the ArchR scATAC-seq analysis framework, preprocessing only needs to create aligned .bam file with cell barcodes contained in the headers for each read pair alignment. The bam file can then be used by the ArchR package to generate Arrow files containing information for all downstream analyses. Hashing data can be appended to the ArchR project to give sample information.
 
-####### Two-level sciATAC
+### Two-level sciATAC
 
 For two-level sciPlex-ATAC-seq data, such as that of the chemical screen experiment, preprocessing instructions was performed as previously described by Domcke et. al. Science 2020 and scripts can be found [here](https://github.com/shendurelab/fly-atac).
 
-####### Three-level sciATAC
+### Three-level sciATAC
 
 For three-level sciPlex-ATAC-seq data, such as that of the mixed lymphocyte reaction experiment,  preprocessing instructions was performed as previously described by Cusanovich et. al. Nature 2018 and scripts can be found [here](https://github.com/shendurelab/human-atac).
 
