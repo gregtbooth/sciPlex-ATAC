@@ -16,11 +16,11 @@ Because we have made use of the ArchR scATAC-seq analysis framework, preprocessi
 
 ### Two-level sciATAC
 
-For two-level sciPlex-ATAC-seq data, such as that of the chemical screen experiment, preprocessing instructions was performed as previously described by Domcke et. al. Science 2020 and scripts can be found [here](https://github.com/shendurelab/fly-atac).
+For two-level sciPlex-ATAC-seq data, such as that of the chemical screen experiment, preprocessing instructions was performed as previously described by Cusanovich et. al. Nature 2018 and scripts can be found [here](https://github.com/shendurelab/fly-atac).
 
 ### Three-level sciATAC
 
-For three-level sciPlex-ATAC-seq data, such as that of the mixed lymphocyte reaction experiment,  preprocessing instructions was performed as previously described by Cusanovich et. al. Nature 2018 and scripts can be found [here](https://github.com/shendurelab/human-atac).
+For three-level sciPlex-ATAC-seq data, such as that of the mixed lymphocyte reaction experiment,  preprocessing instructions was performed as previously described by Domcke et. al. Science 2020 and scripts can be found [here](https://github.com/shendurelab/human-atac).
 
 
 ## Pre-processing raw hash-sequencing data
