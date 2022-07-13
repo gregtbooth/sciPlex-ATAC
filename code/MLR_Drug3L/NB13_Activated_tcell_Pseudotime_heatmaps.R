@@ -1,4 +1,4 @@
-basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/211103_3Level_scichem_MLR_Drugs/"
+basepath = "/home/"
 out_dir = paste0(basepath, "analysis/archr/")
 dir.create(paste0(out_dir, "results/NB14"))
 setwd(paste0(out_dir, "results/NB14"))
@@ -8,7 +8,7 @@ suppressPackageStartupMessages({
   #library(Seurat)
   #library(monocle3)
   library(devtools)
-  load_all('/net/trapnell/vol1/home/gtb7/git/github/monocle3_dev') # latest developer branch of monocle3
+  load_all('/git/github/monocle3_dev') # latest developer branch of monocle3
   library(dplyr)
   library(tidymodels)
   library(tidyr)

@@ -8,8 +8,8 @@ library(ggridges),
 library(UpSetR))
 )
 
-binpath ="/net/trapnell/vol1/home/gtb7/git/GB_src/"
-basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/211103_3Level_scichem_MLR_Drugs/"
+binpath ="/bin/"
+basepath = "/home/"
 source(paste0(binpath,"chiSq_2lvl_GB.R"))
 out_dir = paste0(basepath,"analysis/hash/")
 clean_hashList = read.table(file = paste0(basepath, "pipeline/hash_pipeline/HashSampleSheet.txt"), head = FALSE) 

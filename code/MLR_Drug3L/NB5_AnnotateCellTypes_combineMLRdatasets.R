@@ -1,5 +1,5 @@
-basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/211103_3Level_scichem_MLR_Drugs/"
-basepath_oldData = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/191218_3Level_scichem_MLR_combinedRuns/"
+basepath = "/home/"
+basepath_oldData = "/home/MLR/"
 out_dir = paste0(basepath, "analysis/archr/")
 dir.create(paste0(out_dir, "results/NB5"))
 setwd(paste0(out_dir, "results/NB5"))

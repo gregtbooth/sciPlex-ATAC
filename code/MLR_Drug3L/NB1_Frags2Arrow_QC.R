@@ -2,7 +2,7 @@
 #  qlogin -q trapnell-login.q -l mfree=4G -pe serial 16
 # start R (3.5.2)
 
-basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/211103_3Level_scichem_MLR_Drugs/"
+basepath = "/home/"
 Fragpath = paste0(basepath, "pipeline_output/analysis_MLR/get_unique_fragments/")
 out_dir = paste0(basepath, "analysis/archr/")
 dir.create(out_dir)

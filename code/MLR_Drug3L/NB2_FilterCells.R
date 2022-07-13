@@ -1,4 +1,4 @@
-basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/211103_3Level_scichem_MLR_Drugs/"
+basepath = "/home/"
 out_dir = paste0(basepath, "analysis/archr/")
 setwd(out_dir)
 
@@ -9,7 +9,7 @@ suppressPackageStartupMessages(c(
   library(ggrastr)
 ))
 
-source("/net/trapnell/vol1/home/gtb7/git/sciatac_pipeline/src/sylvia_scripts/scripts/atac_helper_functions.R")
+source("/src/atac_helper_functions.R")
 
 
 prefix = "MLR_drug"

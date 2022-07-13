@@ -2,7 +2,7 @@
 # Will generate pseudobulk aggregate gene scores and smoothed heatmaps across pseudotime bins 
 # focuses only on Allo-activated T-cells
 
-basepath = "/net/trapnell/vol1/home/gtb7/projects/scichem_ATAC/211103_3Level_scichem_MLR_Drugs/"
+basepath = "/home/"
 out_dir = paste0(basepath, "analysis/archr/")
 dir.create(paste0(out_dir, "results/NB15"))
 setwd(paste0(out_dir, "results/NB15"))
@@ -13,7 +13,6 @@ suppressPackageStartupMessages({
   library(monocle3)
   library(cicero)
   library(devtools)
-  #load_all('/net/trapnell/vol1/home/gtb7/git/github/monocle3_dev') # latest developer branch of monocle3
   library(dplyr)
   library(tidymodels)
   library(tidyr)
